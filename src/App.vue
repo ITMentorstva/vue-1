@@ -13,12 +13,7 @@
   </ol>
 
   <form @submit.prevent>
-    <input v-model="name" type="text" placeholder="Unesite vase ime">
-  </form>
-
-  <form @submit.prevent>
-    <input v-model="className" type="text" placeholder="Unesite ime jezika">
-    <input v-on:click="addClass" type="button" value="Dodaj jezik">
+    <input v-model="name" type="text" placeholder="Unesite vase ime" />
   </form>
 
   <button v-on:click="changeUserType">Promeni tipa korisnika</button>
@@ -33,21 +28,17 @@
         name: "Toma",
         professor: false,
         age: 11,
-        classes: ['Javascript', 'VueJS', 'ReactJS', 'NodeJS'],
-        className: null,
+        classes: ['Javascript', 'VueJS', 'ReactJS', 'NodeJS']
       }
     },
     methods: {
       changeUserType() {
         this.professor = !this.professor;
       },
-      deleteClass(singleClass) {
-        let classIndex = this.classes.indexOf(singleClass); // 0, 1, 2, 3
-        this.classes.splice(classIndex, 1);
-      },
-      addClass() {
-        this.classes.push(this.className);
-        this.className = null;
+
+      deleteClass(name) {
+        const index = this.classes.indexOf(name); // 0, 1, 2, 3
+        this.classes.splice(index, 1);
       }
     }
   }
