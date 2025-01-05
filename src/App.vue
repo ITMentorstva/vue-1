@@ -1,26 +1,40 @@
+
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <h1>Hello world {{ name }}</h1>
+
+  <p v-if="professor">User is a professor</p>
+  <p v-else>User is not a professor</p>
+
+  <p v-if="age >= 18">User is 18+</p>
+  <p v-else>User is not 18</p>
+
+  <ol>
+    <li v-for="singleClass in classes" :key="singleClass">{{ singleClass }}</li>
+  </ol>
+
+  <form @submit.prevent>
+    <input v-model="name" type="text" placeholder="Unesite vase ime">
+  </form>
+
+  <button v-on:click="changeUserType">Promeni tipa korisnika</button>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
 
-export default {
-  name: 'App',
-  components: {
-    HelloWorld
+  export default {
+    name: "App",
+    data() {
+      return {
+        name: "Toma",
+        professor: false,
+        age: 11,
+        classes: ['Javascript', 'VueJS', 'ReactJS', 'NodeJS']
+      }
+    },
+    methods: {
+      changeUserType() {
+        this.professor = !this.professor;
+      }
+    }
   }
-}
 </script>
-
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
